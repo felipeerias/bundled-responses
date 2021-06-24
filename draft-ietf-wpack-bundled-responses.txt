@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                              7 May 2021
-Expires: 8 November 2021
+Intended status: Standards Track                            24 June 2021
+Expires: 26 December 2021
 
 
                               Web Bundles
@@ -16,8 +16,7 @@ Abstract
    Web bundles provide a way to bundle up groups of HTTP responses, with
    the request URLs and content negotiation that produced them, to
    transmit or store together.  They can include multiple top-level
-   resources with one identified as the default by a primaryUrl
-   metadata, provide random access to their component exchanges, and
+   resources, provide random access to their component exchanges, and
    efficiently store 8-bit resources.
 
 Discussion Venues
@@ -46,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 November 2021.
+   This Internet-Draft will expire on 26 December 2021.
 
 Copyright Notice
 
@@ -78,8 +77,9 @@ Table of Contents
        4.1.2.  Draft version numbers
      4.2.  Bundle sections
        4.2.1.  The index section
-       4.2.2.  The manifest section
-       4.2.3.  The critical section
+       4.2.2.  The primary section
+       4.2.3.  The manifest section
+       4.2.4.  The critical section
      4.3.  Responses
      4.4.  Serving constraints
    5.  Security Considerations
@@ -189,7 +189,6 @@ Table of Contents
    webbundle = [
      magic: h'F0 9F 8C 90 F0 9F 93 A6',
      version: bytes .size 4,
-     primary-url: whatwg-url,
      section-lengths: bytes .cbor section-lengths,
      sections: [* any ],
      length: bytes .size 8,  ; Big-endian number of bytes in the bundle.
@@ -219,15 +218,7 @@ Table of Contents
 
    The "version" bytestring MUST be "31 00 00 00" in base 16 (an ASCII
    "1" followed by 3 0s) for this version of bundles.  If the recipient
-   doesn't support the version in this field, it MUST either ignore the
-   bundle or fetch and use the content of the "primary-url" field
-   instead.
-
-   The "primary-url" field identifies both a fallback when the recipient
-   doesn't understand the bundle and a default resource inside the
-   bundle to use when the recipient doesn't have more specific
-   instructions.  This field MAY be an empty string, although protocols
-   using bundles MAY themselves forbid that empty value.
+   doesn't support the version in this field, it MUST ignore the bundle.
 
    The "section-lengths" and "sections" arrays contain the actual
    content of the bundle and are defined in Section 4.2.  The "section-
@@ -283,9 +274,11 @@ Table of Contents
 
    *  ""index"" (Section 4.2.1)
 
-   *  ""manifest"" (Section 4.2.2)
+   *  ""primary"" (Section 4.2.2)
 
-   *  ""critical"" (Section 4.2.3)
+   *  ""manifest"" (Section 4.2.3)
+
+   *  ""critical"" (Section 4.2.4)
 
    *  ""responses"" (Section 4.3)
 
@@ -370,7 +363,15 @@ Table of Contents
    A combination of available-values that is omitted from the bundle
    MUST be signaled by setting its offset and length to 0.
 
-4.2.2.  The manifest section
+4.2.2.  The primary section
+
+   primary = whatwg-url
+
+   The "primary" section records a single URL identifying the primary
+   URL of the bundle.  The URL MUST refer to a resource with
+   representations contained in the bundle itself.
+
+4.2.3.  The manifest section
 
    manifest = whatwg-url
 
@@ -390,7 +391,7 @@ Table of Contents
    recipients apply fields in the manifest sooner, for example to show a
    splash screen before parsing the primary resource.
 
-4.2.3.  The critical section
+4.2.4.  The critical section
 
    critical = [*tstr]
 
@@ -602,9 +603,9 @@ Table of Contents
                      +==============+===============+
                      | "index"      | Section 4.2.1 |
                      +--------------+---------------+
-                     | "manifest"   | Section 4.2.2 |
+                     | "manifest"   | Section 4.2.3 |
                      +--------------+---------------+
-                     | "critical"   | Section 4.2.3 |
+                     | "critical"   | Section 4.2.4 |
                      +--------------+---------------+
                      | "responses"  | Section 4.3   |
                      +--------------+---------------+
@@ -641,15 +642,15 @@ Table of Contents
               June 2019,
               <https://datatracker.ietf.org/doc/html/rfc8610>.
 
-   [FETCH]    WHATWG, "Fetch", May 2021,
+   [FETCH]    WHATWG, "Fetch", June 2021,
               <https://fetch.spec.whatwg.org/>.
 
    [I-D.ietf-httpbis-semantics]
               Fielding, R. T., Nottingham, M., and J. Reschke, "HTTP
               Semantics", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-semantics-15, 30 March 2021,
+              httpbis-semantics-16, 27 May 2021,
               <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              semantics-15.txt>.
+              semantics-16.txt>.
 
    [I-D.ietf-httpbis-variants]
               Nottingham, M., "HTTP Representation Variants", Work in
@@ -661,7 +662,7 @@ Table of Contents
               IANA, "Media Types",
               <http://www.iana.org/assignments/media-types>.
 
-   [INFRA]    WHATWG, "Infra", May 2021,
+   [INFRA]    WHATWG, "Infra", June 2021,
               <https://infra.spec.whatwg.org/>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -683,7 +684,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
 
-   [URL]      WHATWG, "URL", May 2021, <https://url.spec.whatwg.org/>.
+   [URL]      WHATWG, "URL", June 2021, <https://url.spec.whatwg.org/>.
 
 7.2.  Informative References
 
