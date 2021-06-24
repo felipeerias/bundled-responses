@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-06-22T00:59:56.302653+00:00",
+  "timestamp": "2021-06-24T00:50:46.877495+00:00",
   "repo": "wpack-wg/bundled-responses",
   "labels": [
     {
@@ -98,5 +98,90 @@
       "comments": []
     }
   ],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 3,
+      "id": "MDExOlB1bGxSZXF1ZXN0Njc2NjkyMTI1",
+      "title": "Separating the primary URL into a section",
+      "url": "https://github.com/wpack-wg/bundled-responses/pull/3",
+      "state": "MERGED",
+      "author": "hayatoito",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes WICG/webpackage#616.\r\n\r\nThis is transferred from @littledan's WICG/webpackage#617.",
+      "createdAt": "2021-06-23T23:53:44Z",
+      "updatedAt": "2021-06-24T00:01:34Z",
+      "baseRepository": "wpack-wg/bundled-responses",
+      "baseRefName": "main",
+      "baseRefOid": "802739ee493d55926e7d2bb7350ff53cb9f7c168",
+      "headRepository": "hayatoito/bundled-responses",
+      "headRefName": "feature1",
+      "headRefOid": "6acbe174e0ae9d2e9601f864ce8e093d17650464",
+      "closedAt": "2021-06-24T00:01:33Z",
+      "mergedAt": "2021-06-24T00:01:33Z",
+      "mergedBy": "hayatoito",
+      "mergeCommit": {
+        "oid": "af91e1701ac9eb0c27d12fa4cd30c8ebcf1ddb50"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NjkxMjMxNzgw",
+          "commit": {
+            "abbreviatedOid": "6acbe17"
+          },
+          "author": "jyasskin",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "The WG hummed in favor of this direction at IETF 110: https://datatracker.ietf.org/meeting/110/materials/minutes-110-wpack-00",
+          "createdAt": "2021-06-23T23:56:19Z",
+          "updatedAt": "2021-06-23T23:56:19Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "MDExOlB1bGxSZXF1ZXN0Njc2NzAzNTk4",
+      "title": "Add the primary-url section to the initial IANA registration.",
+      "url": "https://github.com/wpack-wg/bundled-responses/pull/4",
+      "state": "MERGED",
+      "author": "jyasskin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We forgot this in #3.\r\n\r\nPreview at https://wpack-wg.github.io/bundled-responses/add-primary-section-iana/draft-ietf-wpack-bundled-responses.html#name-web-bundle-section-name-reg",
+      "createdAt": "2021-06-24T00:30:27Z",
+      "updatedAt": "2021-06-24T00:33:12Z",
+      "baseRepository": "wpack-wg/bundled-responses",
+      "baseRefName": "main",
+      "baseRefOid": "f1422e9402bf66502b7b3a98fb24e2309174c1d0",
+      "headRepository": "wpack-wg/bundled-responses",
+      "headRefName": "add-primary-section-iana",
+      "headRefOid": "0987fc3c0d5196d97a8dec7b479ed6ccad06d19e",
+      "closedAt": "2021-06-24T00:33:12Z",
+      "mergedAt": "2021-06-24T00:33:12Z",
+      "mergedBy": "hayatoito",
+      "mergeCommit": {
+        "oid": "2012686401822ea1ca766560e673ca8c92c7e193"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NjkxMjQ0MTg0",
+          "commit": {
+            "abbreviatedOid": "0987fc3"
+          },
+          "author": "hayatoito",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks!",
+          "createdAt": "2021-06-24T00:32:06Z",
+          "updatedAt": "2021-06-24T00:32:06Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
 }
