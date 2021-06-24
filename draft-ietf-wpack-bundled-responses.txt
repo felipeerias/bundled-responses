@@ -699,6 +699,10 @@ Appendix A.  Change Log
 
    This section is to be removed before publishing as an RFC.
 
+   draft-01
+
+   *  Turned the top-level primary URL into an optional section.
+
    draft-00
 
    *  No changes from draft-yasskin-wpack-bundled-exchanges-04.
